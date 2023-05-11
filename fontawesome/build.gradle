@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'maven-publish'
 
 def packageName = 'info.androidhive'
@@ -33,7 +32,7 @@ publishing {
                 failOnError false
                 source = android.sourceSets.main.java.srcDirs
                 // encoding = 'UTF-8'
-                classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+                //classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
             }
 
             task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
@@ -60,7 +59,7 @@ publishing {
     }
 }
 
-artifactory {
+/*artifactory {
     contextUrl = 'http://localhost:8081/artifactory'
     publish {
         repository {
@@ -75,7 +74,7 @@ artifactory {
             publishPom = true
         }
     }
-}
+}*/
 
 android {
     compileSdkVersion 28
@@ -110,7 +109,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    //implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
